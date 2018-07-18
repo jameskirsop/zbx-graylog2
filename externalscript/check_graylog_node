@@ -55,6 +55,9 @@ List of attributes:
     - cluster_extractor_count
     - cluster_contentpack_count              
     - cluster_alerts_count
+    - warning_five_minute
+    - error_five_minute
+    - fatal_five_minute
 EOF
 }
 
@@ -79,9 +82,9 @@ while getopts hH:a:p::l:d opts; do
     esac
 done
 if [ "$DEBUG" == 1 ]; then
-	exec > >(tee -a $LOG)
-	exec 2>&1
-	#set -x
+    exec > >(tee -a $LOG)
+    exec 2>&1
+    #set -x
 fi
 
 # exit if less than 2 attributes are passed in
@@ -114,14 +117,14 @@ get_json_info() {
     # $1 = URI -- $2 filename
     debug "[$FUNCNAME] [$(basename $2)] Pulling json data"
     starttime=`date +%s%3N`
-	#HEADERS_DEBUG=/dev/null
+    #HEADERS_DEBUG=/dev/null
     #if [ "$DEBUG" == 1 ]; then
-	#	HEADERS_DEBUG=$LOG
-	#fi
-	#exec 4> >(tee -a $HEADERS_DEBUG >/dev/null)
-	#set -x
+    #    HEADERS_DEBUG=$LOG
+    #fi
+    #exec 4> >(tee -a $HEADERS_DEBUG >/dev/null)
+    #set -x
     ${CURL_BASE_CMD}${1} | jq '.' > $2
-	#set +x
+    #set +x
     endtime=`date +%s%3N`
     let runtime=${endtime}-${starttime}
     debug "[$FUNCNAME] [$(basename $2)] --> $runtime ms"
@@ -176,19 +179,29 @@ get_total_message_count() { debug "[$FUNCNAME] Executing"; ${CURL_BASE_CMD}/coun
 get_node_throughput()     { debug "[$FUNCNAME] Executing"; ${CURL_BASE_CMD}/system/throughput | jq -r .throughput     ; }
 get_current_deflector()   { debug "[$FUNCNAME] Executing"; ${CURL_BASE_CMD}/system/deflector  | jq -r .current_target ; }
 
+# Message counts
+MESSAGE_INFO_FILE=${WORKDIR}/${HOSTNAME}-messages.json
+
+get_message_counts()        {        get_json_info "/system/metrics/namespace/org.apache.logging.log4j.core.Appender"   $MESSAGE_INFO_FILE; }
+get_warning_five_minute()   { debug "[$FUNCNAME] Executing"; jq -r '.metrics | .[0].metric.rate.five_minute'            $MESSAGE_INFO_FILE; }
+get_error_five_minute()     { debug "[$FUNCNAME] Executing"; jq -r '.metrics | .[1].metric.rate.five_minute'            $MESSAGE_INFO_FILE; }
+get_fatal_five_minute()     { debug "[$FUNCNAME] Executing"; jq -r '.metrics | .[3].metric.rate.five_minute'            $MESSAGE_INFO_FILE; }
+
 poll_data() {
 
     debug "[$FUNCNAME] [$(basename $NODE_INFO_FILE)] Getting node info"; get_node_info &
     debug "[$FUNCNAME] [$(basename $JOURNAL_INFO_FILE)] Getting journal info"; get_system_journal_info &
     debug "[$FUNCNAME] [$(basename $SYSTEM_INFO_FILE)] Getting system info"; get_system_system_info &
     debug "[$FUNCNAME] [$(basename $CLUSTER_INFO_FILE)] Getting cluster info"; get_cluster_info &
+    debug "[$FUNCNAME] [$(basename $MESSAGE_INFO_FILE)] Getting message info"; get_message_counts &
 
     wait
 
-    [[ -s $NODE_INFO_FILE ]] && `cat $JOURNAL_INFO_FILE |jq -e '.' >/dev/null`      || fail "[$FUNCNAME] FAIL. Could not retrieve JSON for node info"
-    [[ -s $JOURNAL_INFO_FILE ]] && `cat $NODE_INFO_FILE |jq -e '.' >/dev/null`      || fail "[$FUNCNAME] FAIL. Could not retrieve JSON for journal info"
-    [[ -s $SYSTEM_INFO_FILE ]] && `cat $SYSTEM_INFO_FILE |jq -e '.' >/dev/null`     || fail "[$FUNCNAME] FAIL. Could not retrieve JSON for system info"
-    [[ -s $CLUSTER_INFO_FILE ]] && `cat $CLUSTER_INFO_FILE |jq -e '.' >/dev/null`   || fail "[$FUNCNAME] FAIL. Could not retrieve JSON for cluster info"
+    [[ -s $NODE_INFO_FILE ]] && `cat $JOURNAL_INFO_FILE |jq '.' >/dev/null`      || fail "[$FUNCNAME] FAIL. Could not retrieve JSON for node info"
+    [[ -s $JOURNAL_INFO_FILE ]] && `cat $NODE_INFO_FILE |jq '.' >/dev/null`      || fail "[$FUNCNAME] FAIL. Could not retrieve JSON for journal info"
+    [[ -s $SYSTEM_INFO_FILE ]] && `cat $SYSTEM_INFO_FILE |jq '.' >/dev/null`     || fail "[$FUNCNAME] FAIL. Could not retrieve JSON for system info"
+    [[ -s $CLUSTER_INFO_FILE ]] && `cat $CLUSTER_INFO_FILE |jq '.' >/dev/null`   || fail "[$FUNCNAME] FAIL. Could not retrieve JSON for cluster info"
+    [[ -s $MESSAGE_INFO_FILE ]] && `cat $MESSAGE_INFO_FILE |jq '.' >/dev/null`   || fail "[$FUNCNAME] FAIL. Could not retrieve JSON for message info"
 
     sync
 }
@@ -239,6 +252,10 @@ case $ATTR in
     cluster_extractor_count)           shlock; get_cluster_extractor_count                 ;;
     cluster_contentpack_count)         shlock; get_cluster_contentpack_count               ;;
     cluster_alerts_count)              shlock; get_cluster_alerts_count                    ;;
+    warning_five_minute)               shlock; get_warning_five_minute                     ;;
+    error_five_minute)                 shlock; get_error_five_minute                       ;;
+    fatal_five_minute)                 shlock; get_fatal_five_minute                       ;;
+
     
     *)  fail "[Attribute FAIL] Unknown attribute to monitor." && echo "Unknown attribute to monitor"                        ;;
 esac
