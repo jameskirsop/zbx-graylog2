@@ -130,51 +130,51 @@ get_json_info() {
 # Node related information -- /system/cluster/node
 NODE_INFO_FILE=${WORKDIR}/${HOSTNAME}-node.json
 get_node_info()           {                           get_json_info "/system/cluster/node" $NODE_INFO_FILE; }
-get_node_id()             { debug "[$FUNCNAME] Executing"; jq -e -r '.node_id'             $NODE_INFO_FILE; }
-get_node_transport_addr() { debug "[$FUNCNAME] Executing"; jq -e -r '.transport_address'   $NODE_INFO_FILE; }
-get_node_is_master()      { debug "[$FUNCNAME] Executing"; jq -e -r '.is_master'           $NODE_INFO_FILE; }
-get_node_cluster()        { debug "[$FUNCNAME] Executing"; jq -e -r '.cluster_id'          $NODE_INFO_FILE; }
-get_node_type()           { debug "[$FUNCNAME] Executing"; jq -e -r '.type'                $NODE_INFO_FILE; }
+get_node_id()             { debug "[$FUNCNAME] Executing"; jq -r '.node_id'             $NODE_INFO_FILE; }
+get_node_transport_addr() { debug "[$FUNCNAME] Executing"; jq -r '.transport_address'   $NODE_INFO_FILE; }
+get_node_is_master()      { debug "[$FUNCNAME] Executing"; jq -r '.is_master'           $NODE_INFO_FILE; }
+get_node_cluster()        { debug "[$FUNCNAME] Executing"; jq -r '.cluster_id'          $NODE_INFO_FILE; }
+get_node_type()           { debug "[$FUNCNAME] Executing"; jq -r '.type'                $NODE_INFO_FILE; }
 
 
 # Journal related information -- /system/journal
 JOURNAL_INFO_FILE=${WORKDIR}/${HOSTNAME}-journal.json
 get_system_journal_info()                {                           get_json_info "/system/journal"              $JOURNAL_INFO_FILE; }
-get_system_journal_events_read()         { debug "[$FUNCNAME] Executing"; jq -e -r '.read_events_per_second'      $JOURNAL_INFO_FILE; }
-get_system_journal_events_append()       { debug "[$FUNCNAME] Executing"; jq -e -r '.append_events_per_second'    $JOURNAL_INFO_FILE; }
-get_system_journal_size()                { debug "[$FUNCNAME] Executing"; jq -e -r '.journal_size'                $JOURNAL_INFO_FILE; }
-get_system_journal_num_segments()        { debug "[$FUNCNAME] Executing"; jq -e -r '.number_of_segments'          $JOURNAL_INFO_FILE; }
-get_system_journal_uncommitted_entries() { debug "[$FUNCNAME] Executing"; jq -e -r '.uncommitted_journal_entries' $JOURNAL_INFO_FILE; }
+get_system_journal_events_read()         { debug "[$FUNCNAME] Executing"; jq -r '.read_events_per_second'      $JOURNAL_INFO_FILE; }
+get_system_journal_events_append()       { debug "[$FUNCNAME] Executing"; jq -r '.append_events_per_second'    $JOURNAL_INFO_FILE; }
+get_system_journal_size()                { debug "[$FUNCNAME] Executing"; jq -r '.journal_size'                $JOURNAL_INFO_FILE; }
+get_system_journal_num_segments()        { debug "[$FUNCNAME] Executing"; jq -r '.number_of_segments'          $JOURNAL_INFO_FILE; }
+get_system_journal_uncommitted_entries() { debug "[$FUNCNAME] Executing"; jq -r '.uncommitted_journal_entries' $JOURNAL_INFO_FILE; }
 
 # System overview
 SYSTEM_INFO_FILE=${WORKDIR}/${HOSTNAME}-system.json
 get_system_system_info()  {                           get_json_info "/system"        $SYSTEM_INFO_FILE; }
-get_system_lb_status()    { debug "[$FUNCNAME] Executing"; jq -e -r '.lb_status'     $SYSTEM_INFO_FILE; }
-get_system_lifecycle()    { debug "[$FUNCNAME] Executing"; jq -e -r '.lifecycle'     $SYSTEM_INFO_FILE; }
-get_system_isprocessing() { debug "[$FUNCNAME] Executing"; jq -e -r '.is_processing' $SYSTEM_INFO_FILE; }
-get_system_tz()           { debug "[$FUNCNAME] Executing"; jq -e -r '.timezone'      $SYSTEM_INFO_FILE; }
-get_system_version()      { debug "[$FUNCNAME] Executing"; jq -e -r '.version'       $SYSTEM_INFO_FILE; }
-get_system_startedat()    { debug "[$FUNCNAME] Executing"; jq -e -r '.started_at'    $SYSTEM_INFO_FILE; }
+get_system_lb_status()    { debug "[$FUNCNAME] Executing"; jq -r '.lb_status'     $SYSTEM_INFO_FILE; }
+get_system_lifecycle()    { debug "[$FUNCNAME] Executing"; jq -r '.lifecycle'     $SYSTEM_INFO_FILE; }
+get_system_isprocessing() { debug "[$FUNCNAME] Executing"; jq -r '.is_processing' $SYSTEM_INFO_FILE; }
+get_system_tz()           { debug "[$FUNCNAME] Executing"; jq -r '.timezone'      $SYSTEM_INFO_FILE; }
+get_system_version()      { debug "[$FUNCNAME] Executing"; jq -r '.version'       $SYSTEM_INFO_FILE; }
+get_system_startedat()    { debug "[$FUNCNAME] Executing"; jq -r '.started_at'    $SYSTEM_INFO_FILE; }
 
 # Cluster overview
 CLUSTER_INFO_FILE=${WORKDIR}/${HOSTNAME}-cluster.json
 get_cluster_info()               {                           get_json_info "/system/cluster/stats"    $CLUSTER_INFO_FILE; }
-get_cluster_stream_count()       { debug "[$FUNCNAME] Executing"; jq -e -r '.stream_count'            $CLUSTER_INFO_FILE; }
-get_cluster_stream_rules_count() { debug "[$FUNCNAME] Executing"; jq -e -r '.stream_rule_count'       $CLUSTER_INFO_FILE; }
-get_cluster_user_count()         { debug "[$FUNCNAME] Executing"; jq -e -r '.user_count'              $CLUSTER_INFO_FILE; }
-get_cluster_output_count()       { debug "[$FUNCNAME] Executing"; jq -e -r '.output_count'            $CLUSTER_INFO_FILE; }
-get_cluster_dashboard_count()    { debug "[$FUNCNAME] Executing"; jq -e -r '.dashboard_count'         $CLUSTER_INFO_FILE; }
-get_cluster_input_count()        { debug "[$FUNCNAME] Executing"; jq -e -r '.input_count'             $CLUSTER_INFO_FILE; }
-get_cluster_global_input_count() { debug "[$FUNCNAME] Executing"; jq -e -r '.global_input_count'      $CLUSTER_INFO_FILE; }
-get_cluster_extractor_count()    { debug "[$FUNCNAME] Executing"; jq -e -r '.extractor_count'         $CLUSTER_INFO_FILE; }
-get_cluster_contentpack_count()  { debug "[$FUNCNAME] Executing"; jq -e -r '.content_pack_count'      $CLUSTER_INFO_FILE; }
-get_cluster_alerts_count()       { debug "[$FUNCNAME] Executing"; jq -e -r '.alarm_stats.alert_count' $CLUSTER_INFO_FILE; }
-get_cluster_es_state()           { debug "[$FUNCNAME] Executing"; jq -e -r '.elasticsearch.status'    $CLUSTER_INFO_FILE; }
+get_cluster_stream_count()       { debug "[$FUNCNAME] Executing"; jq -r '.stream_count'            $CLUSTER_INFO_FILE; }
+get_cluster_stream_rules_count() { debug "[$FUNCNAME] Executing"; jq -r '.stream_rule_count'       $CLUSTER_INFO_FILE; }
+get_cluster_user_count()         { debug "[$FUNCNAME] Executing"; jq -r '.user_count'              $CLUSTER_INFO_FILE; }
+get_cluster_output_count()       { debug "[$FUNCNAME] Executing"; jq -r '.output_count'            $CLUSTER_INFO_FILE; }
+get_cluster_dashboard_count()    { debug "[$FUNCNAME] Executing"; jq -r '.dashboard_count'         $CLUSTER_INFO_FILE; }
+get_cluster_input_count()        { debug "[$FUNCNAME] Executing"; jq -r '.input_count'             $CLUSTER_INFO_FILE; }
+get_cluster_global_input_count() { debug "[$FUNCNAME] Executing"; jq -r '.global_input_count'      $CLUSTER_INFO_FILE; }
+get_cluster_extractor_count()    { debug "[$FUNCNAME] Executing"; jq -r '.extractor_count'         $CLUSTER_INFO_FILE; }
+get_cluster_contentpack_count()  { debug "[$FUNCNAME] Executing"; jq -r '.content_pack_count'      $CLUSTER_INFO_FILE; }
+get_cluster_alerts_count()       { debug "[$FUNCNAME] Executing"; jq -r '.alarm_stats.alert_count' $CLUSTER_INFO_FILE; }
+get_cluster_es_state()           { debug "[$FUNCNAME] Executing"; jq -r '.elasticsearch.status'    $CLUSTER_INFO_FILE; }
 
 # Various ungrouped checks
-get_total_message_count() { debug "[$FUNCNAME] Executing"; ${CURL_BASE_CMD}/count/total       | jq -e -r .events         ; }
-get_node_throughput()     { debug "[$FUNCNAME] Executing"; ${CURL_BASE_CMD}/system/throughput | jq -e -r .throughput     ; }
-get_current_deflector()   { debug "[$FUNCNAME] Executing"; ${CURL_BASE_CMD}/system/deflector  | jq -e -r .current_target ; }
+get_total_message_count() { debug "[$FUNCNAME] Executing"; ${CURL_BASE_CMD}/count/total       | jq -r .events         ; }
+get_node_throughput()     { debug "[$FUNCNAME] Executing"; ${CURL_BASE_CMD}/system/throughput | jq -r .throughput     ; }
+get_current_deflector()   { debug "[$FUNCNAME] Executing"; ${CURL_BASE_CMD}/system/deflector  | jq -r .current_target ; }
 
 poll_data() {
 
