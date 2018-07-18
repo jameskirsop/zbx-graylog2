@@ -8,14 +8,14 @@ Mainly written for my own use, please feel to fork/use and give feedback.
 Written using Zabbix 2.4 and Graylog 1.3. Lightly tested, but does no harm anyway.
 Confirmed to work on Zabbix 3.0 and Graylog 2.0.3 as well.
 
-### Master branch - Graylog 2.1 and up
+### Master branch - Graylog 2.4 and up
 
-Tested using Zabbix 3.2 and Graylog 2.1.1, 2.2.3.
+Tested using Zabbix 3.4 and Graylog 2.4.5.
 
 For specific Elasticsearch monitoring, please head over to Elastizabbix (https://github.com/mkhpalm/elastizabbix)
 
 ## Requirements
-  * jq (https://github.com/stedolan/jq) 1.4+
+  * jq (https://github.com/stedolan/jq) 1.3+
   * curl
 
 This doesn't require anything on the agent. It is an external script curl'ing to the Graylog2 API.
@@ -32,15 +32,14 @@ Please note, if running by hand, that the `poll_data` item has to be run first.
 
 ## Usage
 
-Note: As of 2.1, the default API port is 9000; It used to be 12900. You can change it back to the old behavior with ```rest_listen_uri```, pass port 9000 to the zabbix items (tedious) or simply modify the script at the top to change the port.
+Note: The script is made to work on Ubuntu 14.04 which only has jq version 1.3. Graylog should be running behind a reverse proxy like nginx with HTTPS support.
 
 ```
-check_graylog_node -H <HOSTNAME> -a <ATTRIBUTE> [-p <GRAYLOG_API_PORT>] [-h] [-d]
+check_graylog_node -H <HOSTNAME> -a <ATTRIBUTE> [-h] [-d]
 
 Args:
     -H : Hostname or IP address of graylog server
     -a : Attribute to monitor. See list below.
-    -p : Graylog API port (default: 12900)
     -d : Debug message to log file (default: false)
     -h : Displays help
 
@@ -80,4 +79,7 @@ List of attributes:
     - cluster_extractor_count
     - cluster_contentpack_count
     - cluster_alerts_count
+    - warning_five_minute
+    - error_five_minute
+    - fatal_five_minute
 ```
