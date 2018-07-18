@@ -187,6 +187,8 @@ get_warning_five_minute()   { debug "[$FUNCNAME] Executing"; jq -r '.metrics | .
 get_error_five_minute()     { debug "[$FUNCNAME] Executing"; jq -r '.metrics | .[1].metric.rate.five_minute'            $MESSAGE_INFO_FILE; }
 get_fatal_five_minute()     { debug "[$FUNCNAME] Executing"; jq -r '.metrics | .[3].metric.rate.five_minute'            $MESSAGE_INFO_FILE; }
 
+get_process_times() { debug "[$FUNCNAME] Executing"; ${CURL_BASE_CMD}/system/metrics/org.graylog2.shared.buffers.processors.ProcessBufferProcessor.processTime | jq -r . ; }
+
 poll_data() {
 
     debug "[$FUNCNAME] [$(basename $NODE_INFO_FILE)] Getting node info"; get_node_info &
@@ -256,6 +258,7 @@ case $ATTR in
     error_five_minute)                 shlock; get_error_five_minute                       ;;
     fatal_five_minute)                 shlock; get_fatal_five_minute                       ;;
 
+    process_times)                     shlock; get_process_times                           ;;
     
     *)  fail "[Attribute FAIL] Unknown attribute to monitor." && echo "Unknown attribute to monitor"                        ;;
 esac
