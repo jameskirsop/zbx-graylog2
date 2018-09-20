@@ -8,3 +8,5 @@
   - added protocol support: HTTP or HTTPS
   - few other minor fixes
   - dropped outdated 'pre-2.1' branch
+  - documentation update
+  - tested on Debian 9 with `jq` 1.5
