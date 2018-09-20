@@ -4,22 +4,25 @@
 DEBUG=0
 
 ## Defaults ##
-CREDS_FILE=$(dirname $BASH_SOURCE)/check_graylog_node_creds.txt
-source $CREDS_FILE
 WORKDIR=/tmp
 LOG=${WORKDIR}/$(basename $0).log
-APIPORT=12900
+HOSTNAME="localhost"
+APIPORT=9000
+PROTO="https"
 ## End defaults  ##
 
 
 usage() {
     cat <<EOF
-Usage: $0 -H <HOSTNAME> -a <ATTRIBUTE> [-p <GRAYLOG_API_PORT>] [-h] [-d]
+Usage: $0 -H <HOSTNAME> -U <USERNAME> -P <PASSWORD> -a <ATTRIBUTE> [-p <GRAYLOG_API_PORT>] [-s <PROTOCOL>] [-h] [-d]
 
 Args:
-    -H : Hostname or IP address of graylog server
+    -H : Hostname or IP address of graylog server (default: localhost)
+    -U : Username
+    -P : Password
     -a : Attribute to monitor. See list below.
-    -p : Graylog API port (default: 12900)
+    -p : Graylog API port (default: 9000)
+    -s : Protocol: HTTP or HTTPS (default: HTTPS)
     -d : Debug message to log file (default: false)
     -h : Displays help
 
@@ -31,7 +34,7 @@ List of attributes:
     - node_type
     - node_throughput
     - lb_status
-    - total_message_count 
+    - total_message_count
     - es_cluster_health
     - journal_size
     - journal_num_segments
@@ -40,7 +43,7 @@ List of attributes:
     - journal_events_append
     - poll_data
     - current_deflector (not yet supported, because not accessible via regular user)
-    - system_lifecycle                       
+    - system_lifecycle
     - system_isprocessing
     - system_tz
     - system_version
@@ -53,7 +56,7 @@ List of attributes:
     - cluster_input_count
     - cluster_global_input_count
     - cluster_extractor_count
-    - cluster_contentpack_count              
+    - cluster_contentpack_count
     - cluster_alerts_count
     - warning_five_minute
     - error_five_minute
@@ -61,13 +64,19 @@ List of attributes:
 EOF
 }
 
-while getopts hH:a:p::l:d opts; do
+while getopts hH:U:P:a:s:p::l:d opts; do
     case $opts in
         H)  HOSTNAME=$OPTARG
+            ;;
+        U)  USERNAME=$OPTARG
+            ;;
+        P)  PASSWORD=$OPTARG
             ;;
         a)  ATTR=$OPTARG
             ;;
         p)  APIPORT=$OPTARG
+            ;;
+        s)  PROTO=$OPTARG
             ;;
         h)  usage; exit 0
             ;;
@@ -90,28 +99,28 @@ fi
 # exit if less than 2 attributes are passed in
 [[ $OPTIND -lt 4 ]] && usage && exit 1
 
-##### BEGIN FLOCK CONVENIENCE FUNCTION DEFINITIONS ##### 
+##### BEGIN FLOCK CONVENIENCE FUNCTION DEFINITIONS #####
 ### HEADER ###
 LOCKFILE="${WORKDIR}/$(basename $0)-${HOSTNAME}.lock"
 LOCKFD=99
- 
+
 # PRIVATE
 _lock()             { flock -$1 $LOCKFD; }
 _no_more_locking()  { _lock u; _lock xn && rm -f $LOCKFILE; }
 _prepare_locking()  { eval "exec $LOCKFD>\"$LOCKFILE\""; trap _no_more_locking EXIT; }
- 
+
 # ON START
 _prepare_locking
- 
+
 # PUBLIC
 exlock_now()        { _lock xn; }  # obtain an exclusive lock immediately or fail
 exlock()            { _lock x; }   # obtain an exclusive lock
 shlock()            { _lock s; }   # obtain a shared lock
 unlock()            { _lock u; }   # drop a lock
-##### END FLOCK CONVENIENCE FUNCTION DEFINITIONS ##### 
+##### END FLOCK CONVENIENCE FUNCTION DEFINITIONS #####
 
 #CURL_BASE_CMD="curl -u ${USERNAME}:${PASSWORD}  -D /dev/fd/4 -sS http://${HOSTNAME}:${APIPORT}"
-CURL_BASE_CMD="curl -u ${USERNAME}:${PASSWORD} -sS https://${HOSTNAME}/api"
+CURL_BASE_CMD="curl -u ${USERNAME}:${PASSWORD} -sS ${PROTO}://${HOSTNAME}/api"
 
 get_json_info() {
     # $1 = URI -- $2 filename
@@ -208,15 +217,15 @@ poll_data() {
     sync
 }
 
-fail() { 
+fail() {
     # PPID should be the zabbix poller process and $$ the shell process
     echo -e "$(date '+%Y%m%d %H:%M:%S.%3N') {$PPID} [$$] $@" >> $LOG
 }
 
-debug() { 
+debug() {
     if [ "$DEBUG" == "1" ]; then
         # PPID should be the zabbix poller process and $$ the shell process
-        echo -e "$(date '+%Y%m%d %H:%M:%S.%3N') {$PPID} [$$] $@" 
+        echo -e "$(date '+%Y%m%d %H:%M:%S.%3N') {$PPID} [$$] $@"
     fi
 }
 
@@ -233,9 +242,9 @@ case $ATTR in
     node_cluster)                      shlock; get_node_cluster                            ;;
     node_type)                         shlock; get_node_type                               ;;
     journal_events_read)               shlock; get_system_journal_events_read              ;;
-    journal_events_append)             shlock; get_system_journal_events_append            ;; 
-    journal_size)                      shlock; get_system_journal_size                     ;; 
-    journal_num_segments)              shlock; get_system_journal_num_segments             ;; 
+    journal_events_append)             shlock; get_system_journal_events_append            ;;
+    journal_size)                      shlock; get_system_journal_size                     ;;
+    journal_num_segments)              shlock; get_system_journal_num_segments             ;;
     journal_uncommitted_entries)       shlock; get_system_journal_uncommitted_entries      ;;
     lb_status)                         shlock; get_system_lb_status                        ;;
     es_cluster_health)                 shlock; get_cluster_es_state                        ;;
@@ -259,7 +268,7 @@ case $ATTR in
     fatal_five_minute)                 shlock; get_fatal_five_minute                       ;;
 
     process_times)                     shlock; get_process_times                           ;;
-    
+
     *)  fail "[Attribute FAIL] Unknown attribute to monitor." && echo "Unknown attribute to monitor"                        ;;
 esac
 

@@ -1,0 +1,10 @@
+
+2018-09-20:
+  - added macros for hostname, username & password
+  - removed `check_graylog_node_creds.txt`
+  - added 'Graylog Message Throughput' graph
+  - reset default API port to 9000
+  - default check period for all items is 60s
+  - added protocol support: HTTP or HTTPS
+  - few other minor fixes
+  - dropped outdated 'pre-2.1' branch

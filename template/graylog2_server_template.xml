@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <zabbix_export>
     <version>3.4</version>
-    <date>2018-07-18T07:27:02Z</date>
+    <date>2018-09-20T22:31:55Z</date>
     <groups>
         <group>
             <name>Templates</name>
@@ -9,8 +9,8 @@
     </groups>
     <templates>
         <template>
-            <template>Template graylog2 server</template>
-            <name>Template graylog2 server</name>
+            <template>Template App Graylog2</template>
+            <name>Template App Graylog2</name>
             <description/>
             <groups>
                 <group>
@@ -28,8 +28,8 @@
                     <type>10</type>
                     <snmp_community/>
                     <snmp_oid/>
-                    <key>check_graylog_node[&quot;-H&quot;,{HOST.HOST},&quot;-a&quot;,&quot;cluster_alerts_count&quot;]</key>
-                    <delay>30</delay>
+                    <key>check_graylog_node[&quot;-H&quot;,{$GRAYLOG_HOST},&quot;-U&quot;,{$GRAYLOG_USER},&quot;-P&quot;,{$GRAYLOG_PASS},&quot;-a&quot;,&quot;cluster_alerts_count&quot;]</key>
+                    <delay>60s</delay>
                     <history>90d</history>
                     <trends>365d</trends>
                     <status>0</status>
@@ -69,8 +69,8 @@
                     <type>10</type>
                     <snmp_community/>
                     <snmp_oid/>
-                    <key>check_graylog_node[&quot;-H&quot;,{HOST.HOST},&quot;-a&quot;,&quot;cluster_contentpack_count&quot;]</key>
-                    <delay>60</delay>
+                    <key>check_graylog_node[&quot;-H&quot;,{$GRAYLOG_HOST},&quot;-U&quot;,{$GRAYLOG_USER},&quot;-P&quot;,{$GRAYLOG_PASS},&quot;-a&quot;,&quot;cluster_contentpack_count&quot;]</key>
+                    <delay>60s</delay>
                     <history>90d</history>
                     <trends>365d</trends>
                     <status>0</status>
@@ -110,8 +110,8 @@
                     <type>10</type>
                     <snmp_community/>
                     <snmp_oid/>
-                    <key>check_graylog_node[&quot;-H&quot;,{HOST.HOST},&quot;-a&quot;,&quot;cluster_extractor_count&quot;]</key>
-                    <delay>60</delay>
+                    <key>check_graylog_node[&quot;-H&quot;,{$GRAYLOG_HOST},&quot;-U&quot;,{$GRAYLOG_USER},&quot;-P&quot;,{$GRAYLOG_PASS},&quot;-a&quot;,&quot;cluster_extractor_count&quot;]</key>
+                    <delay>60s</delay>
                     <history>90d</history>
                     <trends>365d</trends>
                     <status>0</status>
@@ -151,8 +151,8 @@
                     <type>10</type>
                     <snmp_community/>
                     <snmp_oid/>
-                    <key>check_graylog_node[&quot;-H&quot;,{HOST.HOST},&quot;-a&quot;,&quot;cluster_global_input_count&quot;]</key>
-                    <delay>60</delay>
+                    <key>check_graylog_node[&quot;-H&quot;,{$GRAYLOG_HOST},&quot;-U&quot;,{$GRAYLOG_USER},&quot;-P&quot;,{$GRAYLOG_PASS},&quot;-a&quot;,&quot;cluster_global_input_count&quot;]</key>
+                    <delay>60s</delay>
                     <history>90d</history>
                     <trends>365d</trends>
                     <status>0</status>
@@ -192,8 +192,8 @@
                     <type>10</type>
                     <snmp_community/>
                     <snmp_oid/>
-                    <key>check_graylog_node[&quot;-H&quot;,{HOST.HOST},&quot;-a&quot;,&quot;cluster_input_count&quot;]</key>
-                    <delay>30</delay>
+                    <key>check_graylog_node[&quot;-H&quot;,{$GRAYLOG_HOST},&quot;-U&quot;,{$GRAYLOG_USER},&quot;-P&quot;,{$GRAYLOG_PASS},&quot;-a&quot;,&quot;cluster_input_count&quot;]</key>
+                    <delay>60s</delay>
                     <history>90d</history>
                     <trends>365d</trends>
                     <status>0</status>
@@ -233,8 +233,8 @@
                     <type>10</type>
                     <snmp_community/>
                     <snmp_oid/>
-                    <key>check_graylog_node[&quot;-H&quot;,{HOST.HOST},&quot;-a&quot;,&quot;cluster_output_count&quot;]</key>
-                    <delay>60</delay>
+                    <key>check_graylog_node[&quot;-H&quot;,{$GRAYLOG_HOST},&quot;-U&quot;,{$GRAYLOG_USER},&quot;-P&quot;,{$GRAYLOG_PASS},&quot;-a&quot;,&quot;cluster_output_count&quot;]</key>
+                    <delay>60s</delay>
                     <history>90d</history>
                     <trends>365d</trends>
                     <status>0</status>
@@ -274,8 +274,8 @@
                     <type>10</type>
                     <snmp_community/>
                     <snmp_oid/>
-                    <key>check_graylog_node[&quot;-H&quot;,{HOST.HOST},&quot;-a&quot;,&quot;cluster_stream_count&quot;]</key>
-                    <delay>60</delay>
+                    <key>check_graylog_node[&quot;-H&quot;,{$GRAYLOG_HOST},&quot;-U&quot;,{$GRAYLOG_USER},&quot;-P&quot;,{$GRAYLOG_PASS},&quot;-a&quot;,&quot;cluster_stream_count&quot;]</key>
+                    <delay>60s</delay>
                     <history>90d</history>
                     <trends>365d</trends>
                     <status>0</status>
@@ -315,8 +315,8 @@
                     <type>10</type>
                     <snmp_community/>
                     <snmp_oid/>
-                    <key>check_graylog_node[&quot;-H&quot;,{HOST.HOST},&quot;-a&quot;,&quot;cluster_stream_rule_count&quot;]</key>
-                    <delay>30</delay>
+                    <key>check_graylog_node[&quot;-H&quot;,{$GRAYLOG_HOST},&quot;-U&quot;,{$GRAYLOG_USER},&quot;-P&quot;,{$GRAYLOG_PASS},&quot;-a&quot;,&quot;cluster_stream_rule_count&quot;]</key>
+                    <delay>60s</delay>
                     <history>90d</history>
                     <trends>365d</trends>
                     <status>0</status>
@@ -356,8 +356,8 @@
                     <type>10</type>
                     <snmp_community/>
                     <snmp_oid/>
-                    <key>check_graylog_node[&quot;-H&quot;,{HOST.HOST},&quot;-a&quot;,&quot;cluster_user_count&quot;]</key>
-                    <delay>60</delay>
+                    <key>check_graylog_node[&quot;-H&quot;,{$GRAYLOG_HOST},&quot;-U&quot;,{$GRAYLOG_USER},&quot;-P&quot;,{$GRAYLOG_PASS},&quot;-a&quot;,&quot;cluster_user_count&quot;]</key>
+                    <delay>60s</delay>
                     <history>90d</history>
                     <trends>365d</trends>
                     <status>0</status>
@@ -397,8 +397,8 @@
                     <type>10</type>
                     <snmp_community/>
                     <snmp_oid/>
-                    <key>check_graylog_node[&quot;-H&quot;,{HOST.HOST},&quot;-a&quot;,&quot;current_deflector&quot;]</key>
-                    <delay>60</delay>
+                    <key>check_graylog_node[&quot;-H&quot;,{$GRAYLOG_HOST},&quot;-U&quot;,{$GRAYLOG_USER},&quot;-P&quot;,{$GRAYLOG_PASS},&quot;-a&quot;,&quot;current_deflector&quot;]</key>
+                    <delay>60s</delay>
                     <history>90d</history>
                     <trends>0</trends>
                     <status>1</status>
@@ -420,7 +420,7 @@
                     <publickey/>
                     <privatekey/>
                     <port/>
-                    <description/>
+                    <description>required Admin permissions</description>
                     <inventory_link>0</inventory_link>
                     <applications>
                         <application>
@@ -438,10 +438,10 @@
                     <type>10</type>
                     <snmp_community/>
                     <snmp_oid/>
-                    <key>check_graylog_node[&quot;-H&quot;,{HOST.HOST},&quot;-a&quot;,&quot;error_five_minute&quot;]</key>
-                    <delay>30s</delay>
-                    <history>15d</history>
-                    <trends>30d</trends>
+                    <key>check_graylog_node[&quot;-H&quot;,{$GRAYLOG_HOST},&quot;-U&quot;,{$GRAYLOG_USER},&quot;-P&quot;,{$GRAYLOG_PASS},&quot;-a&quot;,&quot;error_five_minute&quot;]</key>
+                    <delay>60s</delay>
+                    <history>90d</history>
+                    <trends>365d</trends>
                     <status>0</status>
                     <value_type>0</value_type>
                     <allowed_hosts/>
@@ -479,8 +479,8 @@
                     <type>10</type>
                     <snmp_community/>
                     <snmp_oid/>
-                    <key>check_graylog_node[&quot;-H&quot;,{HOST.HOST},&quot;-a&quot;,&quot;es_cluster_health&quot;]</key>
-                    <delay>30</delay>
+                    <key>check_graylog_node[&quot;-H&quot;,{$GRAYLOG_HOST},&quot;-U&quot;,{$GRAYLOG_USER},&quot;-P&quot;,{$GRAYLOG_PASS},&quot;-a&quot;,&quot;es_cluster_health&quot;]</key>
+                    <delay>60s</delay>
                     <history>90d</history>
                     <trends>0</trends>
                     <status>0</status>
@@ -520,10 +520,10 @@
                     <type>10</type>
                     <snmp_community/>
                     <snmp_oid/>
-                    <key>check_graylog_node[&quot;-H&quot;,{HOST.HOST},&quot;-a&quot;,&quot;fatal_five_minute&quot;]</key>
-                    <delay>30s</delay>
-                    <history>15d</history>
-                    <trends>30d</trends>
+                    <key>check_graylog_node[&quot;-H&quot;,{$GRAYLOG_HOST},&quot;-U&quot;,{$GRAYLOG_USER},&quot;-P&quot;,{$GRAYLOG_PASS},&quot;-a&quot;,&quot;fatal_five_minute&quot;]</key>
+                    <delay>60s</delay>
+                    <history>90d</history>
+                    <trends>365d</trends>
                     <status>0</status>
                     <value_type>0</value_type>
                     <allowed_hosts/>
@@ -561,8 +561,8 @@
                     <type>10</type>
                     <snmp_community/>
                     <snmp_oid/>
-                    <key>check_graylog_node[&quot;-H&quot;,{HOST.HOST},&quot;-a&quot;,&quot;journal_events_append&quot;]</key>
-                    <delay>30</delay>
+                    <key>check_graylog_node[&quot;-H&quot;,{$GRAYLOG_HOST},&quot;-U&quot;,{$GRAYLOG_USER},&quot;-P&quot;,{$GRAYLOG_PASS},&quot;-a&quot;,&quot;journal_events_append&quot;]</key>
+                    <delay>60s</delay>
                     <history>90d</history>
                     <trends>365d</trends>
                     <status>0</status>
@@ -602,8 +602,8 @@
                     <type>10</type>
                     <snmp_community/>
                     <snmp_oid/>
-                    <key>check_graylog_node[&quot;-H&quot;,{HOST.HOST},&quot;-a&quot;,&quot;journal_events_read&quot;]</key>
-                    <delay>25</delay>
+                    <key>check_graylog_node[&quot;-H&quot;,{$GRAYLOG_HOST},&quot;-U&quot;,{$GRAYLOG_USER},&quot;-P&quot;,{$GRAYLOG_PASS},&quot;-a&quot;,&quot;journal_events_read&quot;]</key>
+                    <delay>60s</delay>
                     <history>90d</history>
                     <trends>365d</trends>
                     <status>0</status>
@@ -643,8 +643,8 @@
                     <type>10</type>
                     <snmp_community/>
                     <snmp_oid/>
-                    <key>check_graylog_node[&quot;-H&quot;,{HOST.HOST},&quot;-a&quot;,&quot;journal_num_segments&quot;]</key>
-                    <delay>30</delay>
+                    <key>check_graylog_node[&quot;-H&quot;,{$GRAYLOG_HOST},&quot;-U&quot;,{$GRAYLOG_USER},&quot;-P&quot;,{$GRAYLOG_PASS},&quot;-a&quot;,&quot;journal_num_segments&quot;]</key>
+                    <delay>60s</delay>
                     <history>90d</history>
                     <trends>365d</trends>
                     <status>0</status>
@@ -684,8 +684,8 @@
                     <type>10</type>
                     <snmp_community/>
                     <snmp_oid/>
-                    <key>check_graylog_node[&quot;-H&quot;,{HOST.HOST},&quot;-a&quot;,&quot;journal_size&quot;]</key>
-                    <delay>30</delay>
+                    <key>check_graylog_node[&quot;-H&quot;,{$GRAYLOG_HOST},&quot;-U&quot;,{$GRAYLOG_USER},&quot;-P&quot;,{$GRAYLOG_PASS},&quot;-a&quot;,&quot;journal_size&quot;]</key>
+                    <delay>60s</delay>
                     <history>90d</history>
                     <trends>365d</trends>
                     <status>0</status>
@@ -725,8 +725,8 @@
                     <type>10</type>
                     <snmp_community/>
                     <snmp_oid/>
-                    <key>check_graylog_node[&quot;-H&quot;,{HOST.HOST},&quot;-a&quot;,&quot;journal_uncommitted_entries&quot;]</key>
-                    <delay>30</delay>
+                    <key>check_graylog_node[&quot;-H&quot;,{$GRAYLOG_HOST},&quot;-U&quot;,{$GRAYLOG_USER},&quot;-P&quot;,{$GRAYLOG_PASS},&quot;-a&quot;,&quot;journal_uncommitted_entries&quot;]</key>
+                    <delay>60s</delay>
                     <history>90d</history>
                     <trends>365d</trends>
                     <status>0</status>
@@ -766,8 +766,8 @@
                     <type>10</type>
                     <snmp_community/>
                     <snmp_oid/>
-                    <key>check_graylog_node[&quot;-H&quot;,{HOST.HOST},&quot;-a&quot;,&quot;lb_status&quot;]</key>
-                    <delay>30</delay>
+                    <key>check_graylog_node[&quot;-H&quot;,{$GRAYLOG_HOST},&quot;-U&quot;,{$GRAYLOG_USER},&quot;-P&quot;,{$GRAYLOG_PASS},&quot;-a&quot;,&quot;lb_status&quot;]</key>
+                    <delay>60s</delay>
                     <history>90d</history>
                     <trends>0</trends>
                     <status>0</status>
@@ -807,8 +807,8 @@
                     <type>10</type>
                     <snmp_community/>
                     <snmp_oid/>
-                    <key>check_graylog_node[&quot;-H&quot;,{HOST.HOST},&quot;-a&quot;,&quot;node_cluster&quot;]</key>
-                    <delay>300</delay>
+                    <key>check_graylog_node[&quot;-H&quot;,{$GRAYLOG_HOST},&quot;-U&quot;,{$GRAYLOG_USER},&quot;-P&quot;,{$GRAYLOG_PASS},&quot;-a&quot;,&quot;node_cluster&quot;]</key>
+                    <delay>60s</delay>
                     <history>90d</history>
                     <trends>0</trends>
                     <status>0</status>
@@ -848,8 +848,8 @@
                     <type>10</type>
                     <snmp_community/>
                     <snmp_oid/>
-                    <key>check_graylog_node[&quot;-H&quot;,{HOST.HOST},&quot;-a&quot;,&quot;node_id&quot;]</key>
-                    <delay>300</delay>
+                    <key>check_graylog_node[&quot;-H&quot;,{$GRAYLOG_HOST},&quot;-U&quot;,{$GRAYLOG_USER},&quot;-P&quot;,{$GRAYLOG_PASS},&quot;-a&quot;,&quot;node_id&quot;]</key>
+                    <delay>60s</delay>
                     <history>90d</history>
                     <trends>0</trends>
                     <status>0</status>
@@ -889,8 +889,8 @@
                     <type>10</type>
                     <snmp_community/>
                     <snmp_oid/>
-                    <key>check_graylog_node[&quot;-H&quot;,{HOST.HOST},&quot;-a&quot;,&quot;node_is_master&quot;]</key>
-                    <delay>30</delay>
+                    <key>check_graylog_node[&quot;-H&quot;,{$GRAYLOG_HOST},&quot;-U&quot;,{$GRAYLOG_USER},&quot;-P&quot;,{$GRAYLOG_PASS},&quot;-a&quot;,&quot;node_is_master&quot;]</key>
+                    <delay>60s</delay>
                     <history>90d</history>
                     <trends>0</trends>
                     <status>0</status>
@@ -926,12 +926,12 @@
                     <master_item/>
                 </item>
                 <item>
-                    <name>Throughput</name>
+                    <name>Node Throughput</name>
                     <type>10</type>
                     <snmp_community/>
                     <snmp_oid/>
-                    <key>check_graylog_node[&quot;-H&quot;,{HOST.HOST},&quot;-a&quot;,&quot;node_throughput&quot;]</key>
-                    <delay>30</delay>
+                    <key>check_graylog_node[&quot;-H&quot;,{$GRAYLOG_HOST},&quot;-U&quot;,{$GRAYLOG_USER},&quot;-P&quot;,{$GRAYLOG_PASS},&quot;-a&quot;,&quot;node_throughput&quot;]</key>
+                    <delay>60s</delay>
                     <history>90d</history>
                     <trends>365d</trends>
                     <status>0</status>
@@ -971,8 +971,8 @@
                     <type>10</type>
                     <snmp_community/>
                     <snmp_oid/>
-                    <key>check_graylog_node[&quot;-H&quot;,{HOST.HOST},&quot;-a&quot;,&quot;node_transport&quot;]</key>
-                    <delay>300</delay>
+                    <key>check_graylog_node[&quot;-H&quot;,{$GRAYLOG_HOST},&quot;-U&quot;,{$GRAYLOG_USER},&quot;-P&quot;,{$GRAYLOG_PASS},&quot;-a&quot;,&quot;node_transport&quot;]</key>
+                    <delay>60s</delay>
                     <history>90d</history>
                     <trends>0</trends>
                     <status>0</status>
@@ -1012,8 +1012,8 @@
                     <type>10</type>
                     <snmp_community/>
                     <snmp_oid/>
-                    <key>check_graylog_node[&quot;-H&quot;,{HOST.HOST},&quot;-a&quot;,&quot;node_type&quot;]</key>
-                    <delay>300</delay>
+                    <key>check_graylog_node[&quot;-H&quot;,{$GRAYLOG_HOST},&quot;-U&quot;,{$GRAYLOG_USER},&quot;-P&quot;,{$GRAYLOG_PASS},&quot;-a&quot;,&quot;node_type&quot;]</key>
+                    <delay>60s</delay>
                     <history>90d</history>
                     <trends>0</trends>
                     <status>0</status>
@@ -1053,8 +1053,8 @@
                     <type>10</type>
                     <snmp_community/>
                     <snmp_oid/>
-                    <key>check_graylog_node[&quot;-H&quot;,{HOST.HOST},&quot;-a&quot;,&quot;poll_data&quot;]</key>
-                    <delay>25</delay>
+                    <key>check_graylog_node[&quot;-H&quot;,{$GRAYLOG_HOST},&quot;-U&quot;,{$GRAYLOG_USER},&quot;-P&quot;,{$GRAYLOG_PASS},&quot;-a&quot;,&quot;poll_data&quot;]</key>
+                    <delay>60s</delay>
                     <history>90d</history>
                     <trends>0</trends>
                     <status>0</status>
@@ -1094,8 +1094,8 @@
                     <type>10</type>
                     <snmp_community/>
                     <snmp_oid/>
-                    <key>check_graylog_node[&quot;-H&quot;,{HOST.HOST},&quot;-a&quot;,&quot;process_times&quot;]</key>
-                    <delay>30s</delay>
+                    <key>check_graylog_node[&quot;-H&quot;,{$GRAYLOG_HOST},&quot;-U&quot;,{$GRAYLOG_USER},&quot;-P&quot;,{$GRAYLOG_PASS},&quot;-a&quot;,&quot;process_times&quot;]</key>
+                    <delay>60s</delay>
                     <history>90d</history>
                     <trends>365d</trends>
                     <status>0</status>
@@ -1140,11 +1140,11 @@
                     <type>10</type>
                     <snmp_community/>
                     <snmp_oid/>
-                    <key>check_graylog_node[&quot;-H&quot;,{HOST.HOST},&quot;-a&quot;,&quot;system_isprocessing&quot;]</key>
-                    <delay>30</delay>
+                    <key>check_graylog_node[&quot;-H&quot;,{$GRAYLOG_HOST},&quot;-U&quot;,{$GRAYLOG_USER},&quot;-P&quot;,{$GRAYLOG_PASS},&quot;-a&quot;,&quot;system_isprocessing&quot;]</key>
+                    <delay>60s</delay>
                     <history>90d</history>
                     <trends>0</trends>
-                    <status>1</status>
+                    <status>0</status>
                     <value_type>4</value_type>
                     <allowed_hosts/>
                     <units/>
@@ -1181,11 +1181,11 @@
                     <type>10</type>
                     <snmp_community/>
                     <snmp_oid/>
-                    <key>check_graylog_node[&quot;-H&quot;,{HOST.HOST},&quot;-a&quot;,&quot;system_lifecycle&quot;]</key>
-                    <delay>30</delay>
+                    <key>check_graylog_node[&quot;-H&quot;,{$GRAYLOG_HOST},&quot;-U&quot;,{$GRAYLOG_USER},&quot;-P&quot;,{$GRAYLOG_PASS},&quot;-a&quot;,&quot;system_lifecycle&quot;]</key>
+                    <delay>60s</delay>
                     <history>90d</history>
                     <trends>0</trends>
-                    <status>1</status>
+                    <status>0</status>
                     <value_type>4</value_type>
                     <allowed_hosts/>
                     <units/>
@@ -1222,11 +1222,11 @@
                     <type>10</type>
                     <snmp_community/>
                     <snmp_oid/>
-                    <key>check_graylog_node[&quot;-H&quot;,{HOST.HOST},&quot;-a&quot;,&quot;system_startedat&quot;]</key>
-                    <delay>30</delay>
+                    <key>check_graylog_node[&quot;-H&quot;,{$GRAYLOG_HOST},&quot;-U&quot;,{$GRAYLOG_USER},&quot;-P&quot;,{$GRAYLOG_PASS},&quot;-a&quot;,&quot;system_startedat&quot;]</key>
+                    <delay>60s</delay>
                     <history>90d</history>
                     <trends>0</trends>
-                    <status>1</status>
+                    <status>0</status>
                     <value_type>4</value_type>
                     <allowed_hosts/>
                     <units/>
@@ -1263,11 +1263,11 @@
                     <type>10</type>
                     <snmp_community/>
                     <snmp_oid/>
-                    <key>check_graylog_node[&quot;-H&quot;,{HOST.HOST},&quot;-a&quot;,&quot;system_tz&quot;]</key>
-                    <delay>30</delay>
+                    <key>check_graylog_node[&quot;-H&quot;,{$GRAYLOG_HOST},&quot;-U&quot;,{$GRAYLOG_USER},&quot;-P&quot;,{$GRAYLOG_PASS},&quot;-a&quot;,&quot;system_tz&quot;]</key>
+                    <delay>60s</delay>
                     <history>90d</history>
                     <trends>0</trends>
-                    <status>1</status>
+                    <status>0</status>
                     <value_type>4</value_type>
                     <allowed_hosts/>
                     <units/>
@@ -1304,11 +1304,11 @@
                     <type>10</type>
                     <snmp_community/>
                     <snmp_oid/>
-                    <key>check_graylog_node[&quot;-H&quot;,{HOST.HOST},&quot;-a&quot;,&quot;system_version&quot;]</key>
-                    <delay>30</delay>
+                    <key>check_graylog_node[&quot;-H&quot;,{$GRAYLOG_HOST},&quot;-U&quot;,{$GRAYLOG_USER},&quot;-P&quot;,{$GRAYLOG_PASS},&quot;-a&quot;,&quot;system_version&quot;]</key>
+                    <delay>60s</delay>
                     <history>90d</history>
                     <trends>0</trends>
-                    <status>1</status>
+                    <status>0</status>
                     <value_type>4</value_type>
                     <allowed_hosts/>
                     <units/>
@@ -1341,12 +1341,12 @@
                     <master_item/>
                 </item>
                 <item>
-                    <name>Message count</name>
+                    <name>Total Message count</name>
                     <type>10</type>
                     <snmp_community/>
                     <snmp_oid/>
-                    <key>check_graylog_node[&quot;-H&quot;,{HOST.HOST},&quot;-a&quot;,&quot;total_message_count&quot;]</key>
-                    <delay>30</delay>
+                    <key>check_graylog_node[&quot;-H&quot;,{$GRAYLOG_HOST},&quot;-U&quot;,{$GRAYLOG_USER},&quot;-P&quot;,{$GRAYLOG_PASS},&quot;-a&quot;,&quot;total_message_count&quot;]</key>
+                    <delay>60s</delay>
                     <history>90d</history>
                     <trends>365d</trends>
                     <status>0</status>
@@ -1391,10 +1391,10 @@
                     <type>10</type>
                     <snmp_community/>
                     <snmp_oid/>
-                    <key>check_graylog_node[&quot;-H&quot;,{HOST.HOST},&quot;-a&quot;,&quot;warning_five_minute&quot;]</key>
-                    <delay>30s</delay>
-                    <history>15d</history>
-                    <trends>30d</trends>
+                    <key>check_graylog_node[&quot;-H&quot;,{$GRAYLOG_HOST},&quot;-U&quot;,{$GRAYLOG_USER},&quot;-P&quot;,{$GRAYLOG_PASS},&quot;-a&quot;,&quot;warning_five_minute&quot;]</key>
+                    <delay>60s</delay>
+                    <history>90d</history>
+                    <trends>365d</trends>
                     <status>0</status>
                     <value_type>0</value_type>
                     <allowed_hosts/>
@@ -1433,7 +1433,7 @@
                     <snmp_community/>
                     <snmp_oid/>
                     <key>net.tcp.service[https,{HOST.CONN}/api/,443]</key>
-                    <delay>30</delay>
+                    <delay>60s</delay>
                     <history>90d</history>
                     <trends>365d</trends>
                     <status>0</status>
@@ -1473,14 +1473,27 @@
             </items>
             <discovery_rules/>
             <httptests/>
-            <macros/>
+            <macros>
+                <macro>
+                    <macro>{$GRAYLOG_HOST}</macro>
+                    <value>{HOST.HOST}</value>
+                </macro>
+                <macro>
+                    <macro>{$GRAYLOG_PASS}</macro>
+                    <value>pass</value>
+                </macro>
+                <macro>
+                    <macro>{$GRAYLOG_USER}</macro>
+                    <value>user</value>
+                </macro>
+            </macros>
             <templates/>
             <screens/>
         </template>
     </templates>
     <triggers>
         <trigger>
-            <expression>{Template graylog2 server:net.tcp.service[https,{HOST.CONN}/api/,443].last()}=0</expression>
+            <expression>{Template App Graylog2:net.tcp.service[https,{HOST.CONN}/api/,443].last()}=0</expression>
             <recovery_mode>0</recovery_mode>
             <recovery_expression/>
             <name>API port is DOWN</name>
@@ -1488,7 +1501,7 @@
             <correlation_tag/>
             <url/>
             <status>0</status>
-            <priority>4</priority>
+            <priority>5</priority>
             <description/>
             <type>0</type>
             <manual_close>0</manual_close>
@@ -1496,7 +1509,7 @@
             <tags/>
         </trigger>
         <trigger>
-            <expression>{Template graylog2 server:check_graylog_node[&quot;-H&quot;,{HOST.HOST},&quot;-a&quot;,&quot;es_cluster_health&quot;].str(RED)}=1</expression>
+            <expression>{Template App Graylog2:check_graylog_node[&quot;-H&quot;,{$GRAYLOG_HOST},&quot;-U&quot;,{$GRAYLOG_USER},&quot;-P&quot;,{$GRAYLOG_PASS},&quot;-a&quot;,&quot;es_cluster_health&quot;].str(RED)}=1</expression>
             <recovery_mode>0</recovery_mode>
             <recovery_expression/>
             <name>ES cluster health is RED</name>
@@ -1511,14 +1524,14 @@
             <dependencies>
                 <dependency>
                     <name>API port is DOWN</name>
-                    <expression>{Template graylog2 server:net.tcp.service[https,{HOST.CONN}/api/,443].last()}=0</expression>
+                    <expression>{Template App Graylog2:net.tcp.service[https,{HOST.CONN}/api/,443].last()}=0</expression>
                     <recovery_expression/>
                 </dependency>
             </dependencies>
             <tags/>
         </trigger>
         <trigger>
-            <expression>{Template graylog2 server:check_graylog_node[&quot;-H&quot;,{HOST.HOST},&quot;-a&quot;,&quot;es_cluster_health&quot;].str(YELLOW)}=1</expression>
+            <expression>{Template App Graylog2:check_graylog_node[&quot;-H&quot;,{$GRAYLOG_HOST},&quot;-U&quot;,{$GRAYLOG_USER},&quot;-P&quot;,{$GRAYLOG_PASS},&quot;-a&quot;,&quot;es_cluster_health&quot;].str(YELLOW)}=1</expression>
             <recovery_mode>0</recovery_mode>
             <recovery_expression/>
             <name>ES cluster health is YELLOW</name>
@@ -1533,14 +1546,14 @@
             <dependencies>
                 <dependency>
                     <name>API port is DOWN</name>
-                    <expression>{Template graylog2 server:net.tcp.service[https,{HOST.CONN}/api/,443].last()}=0</expression>
+                    <expression>{Template App Graylog2:net.tcp.service[https,{HOST.CONN}/api/,443].last()}=0</expression>
                     <recovery_expression/>
                 </dependency>
             </dependencies>
             <tags/>
         </trigger>
         <trigger>
-            <expression>{Template graylog2 server:check_graylog_node[&quot;-H&quot;,{HOST.HOST},&quot;-a&quot;,&quot;poll_data&quot;].str(FAIL)}=1</expression>
+            <expression>{Template App Graylog2:check_graylog_node[&quot;-H&quot;,{$GRAYLOG_HOST},&quot;-U&quot;,{$GRAYLOG_USER},&quot;-P&quot;,{$GRAYLOG_PASS},&quot;-a&quot;,&quot;poll_data&quot;].str(FAIL)}=1</expression>
             <recovery_mode>0</recovery_mode>
             <recovery_expression/>
             <name>Fail to poll data</name>
@@ -1555,14 +1568,14 @@
             <dependencies>
                 <dependency>
                     <name>API port is DOWN</name>
-                    <expression>{Template graylog2 server:net.tcp.service[https,{HOST.CONN}/api/,443].last()}=0</expression>
+                    <expression>{Template App Graylog2:net.tcp.service[https,{HOST.CONN}/api/,443].last()}=0</expression>
                     <recovery_expression/>
                 </dependency>
             </dependencies>
             <tags/>
         </trigger>
         <trigger>
-            <expression>{Template graylog2 server:check_graylog_node[&quot;-H&quot;,{HOST.HOST},&quot;-a&quot;,&quot;journal_events_append&quot;].avg(300)}&gt;1000</expression>
+            <expression>{Template App Graylog2:check_graylog_node[&quot;-H&quot;,{$GRAYLOG_HOST},&quot;-U&quot;,{$GRAYLOG_USER},&quot;-P&quot;,{$GRAYLOG_PASS},&quot;-a&quot;,&quot;journal_events_append&quot;].avg(300)}&gt;1000</expression>
             <recovery_mode>0</recovery_mode>
             <recovery_expression/>
             <name>Journal append events stacking up</name>
@@ -1577,14 +1590,14 @@
             <dependencies>
                 <dependency>
                     <name>API port is DOWN</name>
-                    <expression>{Template graylog2 server:net.tcp.service[https,{HOST.CONN}/api/,443].last()}=0</expression>
+                    <expression>{Template App Graylog2:net.tcp.service[https,{HOST.CONN}/api/,443].last()}=0</expression>
                     <recovery_expression/>
                 </dependency>
             </dependencies>
             <tags/>
         </trigger>
         <trigger>
-            <expression>{Template graylog2 server:check_graylog_node[&quot;-H&quot;,{HOST.HOST},&quot;-a&quot;,&quot;journal_events_read&quot;].avg(300)}&gt;1000</expression>
+            <expression>{Template App Graylog2:check_graylog_node[&quot;-H&quot;,{$GRAYLOG_HOST},&quot;-U&quot;,{$GRAYLOG_USER},&quot;-P&quot;,{$GRAYLOG_PASS},&quot;-a&quot;,&quot;journal_events_read&quot;].avg(300)}&gt;1000</expression>
             <recovery_mode>0</recovery_mode>
             <recovery_expression/>
             <name>Journal read events stacking up</name>
@@ -1599,14 +1612,14 @@
             <dependencies>
                 <dependency>
                     <name>API port is DOWN</name>
-                    <expression>{Template graylog2 server:net.tcp.service[https,{HOST.CONN}/api/,443].last()}=0</expression>
+                    <expression>{Template App Graylog2:net.tcp.service[https,{HOST.CONN}/api/,443].last()}=0</expression>
                     <recovery_expression/>
                 </dependency>
             </dependencies>
             <tags/>
         </trigger>
         <trigger>
-            <expression>{Template graylog2 server:check_graylog_node[&quot;-H&quot;,{HOST.HOST},&quot;-a&quot;,&quot;journal_uncommitted_entries&quot;].avg(300)}&gt;1000</expression>
+            <expression>{Template App Graylog2:check_graylog_node[&quot;-H&quot;,{$GRAYLOG_HOST},&quot;-U&quot;,{$GRAYLOG_USER},&quot;-P&quot;,{$GRAYLOG_PASS},&quot;-a&quot;,&quot;journal_uncommitted_entries&quot;].avg(300)}&gt;1000</expression>
             <recovery_mode>0</recovery_mode>
             <recovery_expression/>
             <name>Journal uncommitted entries are stacking up</name>
@@ -1621,14 +1634,14 @@
             <dependencies>
                 <dependency>
                     <name>API port is DOWN</name>
-                    <expression>{Template graylog2 server:net.tcp.service[https,{HOST.CONN}/api/,443].last()}=0</expression>
+                    <expression>{Template App Graylog2:net.tcp.service[https,{HOST.CONN}/api/,443].last()}=0</expression>
                     <recovery_expression/>
                 </dependency>
             </dependencies>
             <tags/>
         </trigger>
         <trigger>
-            <expression>{Template graylog2 server:check_graylog_node[&quot;-H&quot;,{HOST.HOST},&quot;-a&quot;,&quot;node_cluster&quot;].change(0)}&lt;0</expression>
+            <expression>{Template App Graylog2:check_graylog_node[&quot;-H&quot;,{$GRAYLOG_HOST},&quot;-U&quot;,{$GRAYLOG_USER},&quot;-P&quot;,{$GRAYLOG_PASS},&quot;-a&quot;,&quot;node_cluster&quot;].change(0)}&lt;0</expression>
             <recovery_mode>0</recovery_mode>
             <recovery_expression/>
             <name>Node cluster ID changed</name>
@@ -1643,14 +1656,14 @@
             <dependencies>
                 <dependency>
                     <name>API port is DOWN</name>
-                    <expression>{Template graylog2 server:net.tcp.service[https,{HOST.CONN}/api/,443].last()}=0</expression>
+                    <expression>{Template App Graylog2:net.tcp.service[https,{HOST.CONN}/api/,443].last()}=0</expression>
                     <recovery_expression/>
                 </dependency>
             </dependencies>
             <tags/>
         </trigger>
         <trigger>
-            <expression>{Template graylog2 server:check_graylog_node[&quot;-H&quot;,{HOST.HOST},&quot;-a&quot;,&quot;node_id&quot;].change(0)}&lt;0</expression>
+            <expression>{Template App Graylog2:check_graylog_node[&quot;-H&quot;,{$GRAYLOG_HOST},&quot;-U&quot;,{$GRAYLOG_USER},&quot;-P&quot;,{$GRAYLOG_PASS},&quot;-a&quot;,&quot;node_id&quot;].change(0)}&lt;0</expression>
             <recovery_mode>0</recovery_mode>
             <recovery_expression/>
             <name>Node ID changed</name>
@@ -1665,14 +1678,14 @@
             <dependencies>
                 <dependency>
                     <name>API port is DOWN</name>
-                    <expression>{Template graylog2 server:net.tcp.service[https,{HOST.CONN}/api/,443].last()}=0</expression>
+                    <expression>{Template App Graylog2:net.tcp.service[https,{HOST.CONN}/api/,443].last()}=0</expression>
                     <recovery_expression/>
                 </dependency>
             </dependencies>
             <tags/>
         </trigger>
         <trigger>
-            <expression>{Template graylog2 server:check_graylog_node[&quot;-H&quot;,{HOST.HOST},&quot;-a&quot;,&quot;lb_status&quot;].str(alive)}=0</expression>
+            <expression>{Template App Graylog2:check_graylog_node[&quot;-H&quot;,{$GRAYLOG_HOST},&quot;-U&quot;,{$GRAYLOG_USER},&quot;-P&quot;,{$GRAYLOG_PASS},&quot;-a&quot;,&quot;lb_status&quot;].str(alive)}=0</expression>
             <recovery_mode>0</recovery_mode>
             <recovery_expression/>
             <name>Node is marked as DOWN</name>
@@ -1687,14 +1700,14 @@
             <dependencies>
                 <dependency>
                     <name>API port is DOWN</name>
-                    <expression>{Template graylog2 server:net.tcp.service[https,{HOST.CONN}/api/,443].last()}=0</expression>
+                    <expression>{Template App Graylog2:net.tcp.service[https,{HOST.CONN}/api/,443].last()}=0</expression>
                     <recovery_expression/>
                 </dependency>
             </dependencies>
             <tags/>
         </trigger>
         <trigger>
-            <expression>{Template graylog2 server:check_graylog_node[&quot;-H&quot;,{HOST.HOST},&quot;-a&quot;,&quot;system_isprocessing&quot;].str(false)}=1</expression>
+            <expression>{Template App Graylog2:check_graylog_node[&quot;-H&quot;,{$GRAYLOG_HOST},&quot;-U&quot;,{$GRAYLOG_USER},&quot;-P&quot;,{$GRAYLOG_PASS},&quot;-a&quot;,&quot;system_isprocessing&quot;].str(false)}=1</expression>
             <recovery_mode>0</recovery_mode>
             <recovery_expression/>
             <name>Node is not processing</name>
@@ -1709,14 +1722,14 @@
             <dependencies>
                 <dependency>
                     <name>API port is DOWN</name>
-                    <expression>{Template graylog2 server:net.tcp.service[https,{HOST.CONN}/api/,443].last()}=0</expression>
+                    <expression>{Template App Graylog2:net.tcp.service[https,{HOST.CONN}/api/,443].last()}=0</expression>
                     <recovery_expression/>
                 </dependency>
             </dependencies>
             <tags/>
         </trigger>
         <trigger>
-            <expression>{Template graylog2 server:check_graylog_node[&quot;-H&quot;,{HOST.HOST},&quot;-a&quot;,&quot;system_lifecycle&quot;].str(running)}=0</expression>
+            <expression>{Template App Graylog2:check_graylog_node[&quot;-H&quot;,{$GRAYLOG_HOST},&quot;-U&quot;,{$GRAYLOG_USER},&quot;-P&quot;,{$GRAYLOG_PASS},&quot;-a&quot;,&quot;system_lifecycle&quot;].str(running)}=0</expression>
             <recovery_mode>0</recovery_mode>
             <recovery_expression/>
             <name>Node is not running</name>
@@ -1731,14 +1744,14 @@
             <dependencies>
                 <dependency>
                     <name>API port is DOWN</name>
-                    <expression>{Template graylog2 server:net.tcp.service[https,{HOST.CONN}/api/,443].last()}=0</expression>
+                    <expression>{Template App Graylog2:net.tcp.service[https,{HOST.CONN}/api/,443].last()}=0</expression>
                     <recovery_expression/>
                 </dependency>
             </dependencies>
             <tags/>
         </trigger>
         <trigger>
-            <expression>{Template graylog2 server:check_graylog_node[&quot;-H&quot;,{HOST.HOST},&quot;-a&quot;,&quot;node_is_master&quot;].change(0)}&lt;0</expression>
+            <expression>{Template App Graylog2:check_graylog_node[&quot;-H&quot;,{$GRAYLOG_HOST},&quot;-U&quot;,{$GRAYLOG_USER},&quot;-P&quot;,{$GRAYLOG_PASS},&quot;-a&quot;,&quot;node_is_master&quot;].change(0)}&lt;0</expression>
             <recovery_mode>0</recovery_mode>
             <recovery_expression/>
             <name>Node master status changed</name>
@@ -1753,14 +1766,14 @@
             <dependencies>
                 <dependency>
                     <name>API port is DOWN</name>
-                    <expression>{Template graylog2 server:net.tcp.service[https,{HOST.CONN}/api/,443].last()}=0</expression>
+                    <expression>{Template App Graylog2:net.tcp.service[https,{HOST.CONN}/api/,443].last()}=0</expression>
                     <recovery_expression/>
                 </dependency>
             </dependencies>
             <tags/>
         </trigger>
         <trigger>
-            <expression>{Template graylog2 server:check_graylog_node[&quot;-H&quot;,{HOST.HOST},&quot;-a&quot;,&quot;node_transport&quot;].change(0)}&lt;0</expression>
+            <expression>{Template App Graylog2:check_graylog_node[&quot;-H&quot;,{$GRAYLOG_HOST},&quot;-U&quot;,{$GRAYLOG_USER},&quot;-P&quot;,{$GRAYLOG_PASS},&quot;-a&quot;,&quot;node_transport&quot;].change(0)}&lt;0</expression>
             <recovery_mode>0</recovery_mode>
             <recovery_expression/>
             <name>Node transport info changed</name>
@@ -1775,14 +1788,14 @@
             <dependencies>
                 <dependency>
                     <name>API port is DOWN</name>
-                    <expression>{Template graylog2 server:net.tcp.service[https,{HOST.CONN}/api/,443].last()}=0</expression>
+                    <expression>{Template App Graylog2:net.tcp.service[https,{HOST.CONN}/api/,443].last()}=0</expression>
                     <recovery_expression/>
                 </dependency>
             </dependencies>
             <tags/>
         </trigger>
         <trigger>
-            <expression>{Template graylog2 server:check_graylog_node[&quot;-H&quot;,{HOST.HOST},&quot;-a&quot;,&quot;error_five_minute&quot;].last(#1)}&gt;5</expression>
+            <expression>{Template App Graylog2:check_graylog_node[&quot;-H&quot;,{$GRAYLOG_HOST},&quot;-U&quot;,{$GRAYLOG_USER},&quot;-P&quot;,{$GRAYLOG_PASS},&quot;-a&quot;,&quot;error_five_minute&quot;].last(#1)}&gt;5</expression>
             <recovery_mode>0</recovery_mode>
             <recovery_expression/>
             <name>Too many errors</name>
@@ -1798,7 +1811,7 @@
             <tags/>
         </trigger>
         <trigger>
-            <expression>{Template graylog2 server:check_graylog_node[&quot;-H&quot;,{HOST.HOST},&quot;-a&quot;,&quot;warning_five_minute&quot;].last()}&gt;10</expression>
+            <expression>{Template App Graylog2:check_graylog_node[&quot;-H&quot;,{$GRAYLOG_HOST},&quot;-U&quot;,{$GRAYLOG_USER},&quot;-P&quot;,{$GRAYLOG_PASS},&quot;-a&quot;,&quot;warning_five_minute&quot;].last()}&gt;10</expression>
             <recovery_mode>0</recovery_mode>
             <recovery_expression/>
             <name>Too many errors warnings</name>
@@ -1814,7 +1827,7 @@
             <tags/>
         </trigger>
         <trigger>
-            <expression>{Template graylog2 server:check_graylog_node[&quot;-H&quot;,{HOST.HOST},&quot;-a&quot;,&quot;fatal_five_minute&quot;].last()}&gt;1</expression>
+            <expression>{Template App Graylog2:check_graylog_node[&quot;-H&quot;,{$GRAYLOG_HOST},&quot;-U&quot;,{$GRAYLOG_USER},&quot;-P&quot;,{$GRAYLOG_PASS},&quot;-a&quot;,&quot;fatal_five_minute&quot;].last()}&gt;1</expression>
             <recovery_mode>0</recovery_mode>
             <recovery_expression/>
             <name>Too many fatal messages</name>
@@ -1832,7 +1845,7 @@
     </triggers>
     <graphs>
         <graph>
-            <name>Journal stack graph</name>
+            <name>Graylog Journal</name>
             <width>900</width>
             <height>200</height>
             <yaxismin>0.0000</yaxismin>
@@ -1857,8 +1870,8 @@
                     <calc_fnc>2</calc_fnc>
                     <type>0</type>
                     <item>
-                        <host>Template graylog2 server</host>
-                        <key>check_graylog_node[&quot;-H&quot;,{HOST.HOST},&quot;-a&quot;,&quot;journal_events_append&quot;]</key>
+                        <host>Template App Graylog2</host>
+                        <key>check_graylog_node[&quot;-H&quot;,{$GRAYLOG_HOST},&quot;-U&quot;,{$GRAYLOG_USER},&quot;-P&quot;,{$GRAYLOG_PASS},&quot;-a&quot;,&quot;journal_events_append&quot;]</key>
                     </item>
                 </graph_item>
                 <graph_item>
@@ -1869,8 +1882,8 @@
                     <calc_fnc>2</calc_fnc>
                     <type>0</type>
                     <item>
-                        <host>Template graylog2 server</host>
-                        <key>check_graylog_node[&quot;-H&quot;,{HOST.HOST},&quot;-a&quot;,&quot;journal_events_read&quot;]</key>
+                        <host>Template App Graylog2</host>
+                        <key>check_graylog_node[&quot;-H&quot;,{$GRAYLOG_HOST},&quot;-U&quot;,{$GRAYLOG_USER},&quot;-P&quot;,{$GRAYLOG_PASS},&quot;-a&quot;,&quot;journal_events_read&quot;]</key>
                     </item>
                 </graph_item>
                 <graph_item>
@@ -1881,8 +1894,52 @@
                     <calc_fnc>2</calc_fnc>
                     <type>0</type>
                     <item>
-                        <host>Template graylog2 server</host>
-                        <key>check_graylog_node[&quot;-H&quot;,{HOST.HOST},&quot;-a&quot;,&quot;journal_uncommitted_entries&quot;]</key>
+                        <host>Template App Graylog2</host>
+                        <key>check_graylog_node[&quot;-H&quot;,{$GRAYLOG_HOST},&quot;-U&quot;,{$GRAYLOG_USER},&quot;-P&quot;,{$GRAYLOG_PASS},&quot;-a&quot;,&quot;journal_uncommitted_entries&quot;]</key>
+                    </item>
+                </graph_item>
+            </graph_items>
+        </graph>
+        <graph>
+            <name>Graylog Message Throughput</name>
+            <width>900</width>
+            <height>200</height>
+            <yaxismin>0.0000</yaxismin>
+            <yaxismax>100.0000</yaxismax>
+            <show_work_period>1</show_work_period>
+            <show_triggers>1</show_triggers>
+            <type>0</type>
+            <show_legend>1</show_legend>
+            <show_3d>0</show_3d>
+            <percent_left>0.0000</percent_left>
+            <percent_right>0.0000</percent_right>
+            <ymin_type_1>0</ymin_type_1>
+            <ymax_type_1>0</ymax_type_1>
+            <ymin_item_1>0</ymin_item_1>
+            <ymax_item_1>0</ymax_item_1>
+            <graph_items>
+                <graph_item>
+                    <sortorder>0</sortorder>
+                    <drawtype>0</drawtype>
+                    <color>0000BB</color>
+                    <yaxisside>0</yaxisside>
+                    <calc_fnc>2</calc_fnc>
+                    <type>0</type>
+                    <item>
+                        <host>Template App Graylog2</host>
+                        <key>check_graylog_node[&quot;-H&quot;,{$GRAYLOG_HOST},&quot;-U&quot;,{$GRAYLOG_USER},&quot;-P&quot;,{$GRAYLOG_PASS},&quot;-a&quot;,&quot;node_throughput&quot;]</key>
+                    </item>
+                </graph_item>
+                <graph_item>
+                    <sortorder>1</sortorder>
+                    <drawtype>5</drawtype>
+                    <color>00BB00</color>
+                    <yaxisside>0</yaxisside>
+                    <calc_fnc>2</calc_fnc>
+                    <type>0</type>
+                    <item>
+                        <host>Template App Graylog2</host>
+                        <key>check_graylog_node[&quot;-H&quot;,{$GRAYLOG_HOST},&quot;-U&quot;,{$GRAYLOG_USER},&quot;-P&quot;,{$GRAYLOG_PASS},&quot;-a&quot;,&quot;total_message_count&quot;]</key>
                     </item>
                 </graph_item>
             </graph_items>
