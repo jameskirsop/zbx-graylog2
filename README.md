@@ -1,16 +1,9 @@
 # graylog2-zabbix
-Basic Zabbix monitoring for Graylog2
-
-Mainly written for my own use, please feel to fork/use and give feedback.
-
-### Branch pre-2.1 - Graylog 2.1 and below
-
-Written using Zabbix 2.4 and Graylog 1.3. Lightly tested, but does no harm anyway.
-Confirmed to work on Zabbix 3.0 and Graylog 2.0.3 as well.
+Basic Zabbix monitoring for Graylog2 Server
 
 ### Master branch - Graylog 2.4 and up
 
-Tested using Zabbix 3.4 and Graylog 2.4.5.
+Tested on Zabbix 3.4.11 and Graylog 2.4.6.
 
 For specific Elasticsearch monitoring, please head over to Elastizabbix (https://github.com/mkhpalm/elastizabbix)
 
@@ -18,21 +11,22 @@ For specific Elasticsearch monitoring, please head over to Elastizabbix (https:/
   * jq (https://github.com/stedolan/jq) 1.3+
   * curl
 
+The script has been tested on Ubuntu 14.04 & Debian 9. Graylog should be running behind a reverse proxy like nginx with HTTPS support.
+
 This doesn't require anything on the agent. It is an external script curl'ing to the Graylog2 API.
 
 Please note, if running by hand, that the `poll_data` item has to be run first.
 
 ## How to install
   * Create a Graylog2 user with the "reader" role
-  * Enter the credentials in the check_graylog_node_creds.txt file.
-  * Copy the 2 files to your zabbix's externalscripts directory.
-  * Make sure your files permissions are adequate.
-  * Import the XML template in Zabbix.
-  * Add template to graylog server and subscribe your graylog server hosts to it.
+  * Copy the script to your Zabbix's _externalscripts_ directory.
+  * Make sure the file's permissions are adequate.
+  * Import the XML template into Zabbix.
+  * Assign the template to the corresponding Graylog server and update macros with the right values.
 
 ## Usage
 
-Note: The script is made to work on Ubuntu 14.04 which only has jq version 1.3. Graylog should be running behind a reverse proxy like nginx with HTTPS support.
+Note: in order to use `api/system/deflector` (_Current deflector_ item) a user must have _Admin_ right. It is disabled in the template by default.
 
 ```
 check_graylog_node -H <HOSTNAME> -U <USERNAME> -P <PASSWORD> -a <ATTRIBUTE> [-p <GRAYLOG_API_PORT>] [-s <PROTOCOL>] [-h] [-d]
