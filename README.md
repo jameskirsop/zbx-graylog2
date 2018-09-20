@@ -35,11 +35,15 @@ Please note, if running by hand, that the `poll_data` item has to be run first.
 Note: The script is made to work on Ubuntu 14.04 which only has jq version 1.3. Graylog should be running behind a reverse proxy like nginx with HTTPS support.
 
 ```
-check_graylog_node -H <HOSTNAME> -a <ATTRIBUTE> [-h] [-d]
+check_graylog_node -H <HOSTNAME> -U <USERNAME> -P <PASSWORD> -a <ATTRIBUTE> [-p <GRAYLOG_API_PORT>] [-s <PROTOCOL>] [-h] [-d]
 
 Args:
     -H : Hostname or IP address of graylog server
+    -U : Username
+    -P : Password
     -a : Attribute to monitor. See list below.
+    -p : Graylog API port (default: 9000)
+    -s : Protocol: HTTP or HTTPS (default: HTTPS)
     -d : Debug message to log file (default: false)
     -h : Displays help
 
