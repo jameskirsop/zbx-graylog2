@@ -4,6 +4,8 @@
 DEBUG=0
 
 ## Defaults ##
+CREDS_FILE=$(dirname $BASH_SOURCE)/check_graylog_node_creds.txt
+source $CREDS_FILE
 WORKDIR=/tmp
 LOG=${WORKDIR}/$(basename $0).log
 HOSTNAME="localhost"
@@ -18,8 +20,6 @@ Usage: $0 -H <HOSTNAME> -U <USERNAME> -P <PASSWORD> -a <ATTRIBUTE> [-p <GRAYLOG_
 
 Args:
     -H : Hostname or IP address of graylog server (default: localhost)
-    -U : Username
-    -P : Password
     -a : Attribute to monitor. See list below.
     -p : Graylog API port (default: 9000)
     -s : Protocol: HTTP or HTTPS (default: HTTPS)
@@ -67,10 +67,6 @@ EOF
 while getopts hH:U:P:a:s:p::l:d opts; do
     case $opts in
         H)  HOSTNAME=$OPTARG
-            ;;
-        U)  USERNAME=$OPTARG
-            ;;
-        P)  PASSWORD=$OPTARG
             ;;
         a)  ATTR=$OPTARG
             ;;
@@ -120,7 +116,7 @@ unlock()            { _lock u; }   # drop a lock
 ##### END FLOCK CONVENIENCE FUNCTION DEFINITIONS #####
 
 #CURL_BASE_CMD="curl -u ${USERNAME}:${PASSWORD}  -D /dev/fd/4 -sS http://${HOSTNAME}:${APIPORT}"
-CURL_BASE_CMD="curl -u ${USERNAME}:${PASSWORD} -sS ${PROTO}://${HOSTNAME}/api"
+CURL_BASE_CMD="curl -u ${USERNAME}:${PASSWORD} -sS ${PROTO}://${HOSTNAME}:${APIPORT}/api"
 
 get_json_info() {
     # $1 = URI -- $2 filename
