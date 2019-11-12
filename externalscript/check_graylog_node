@@ -144,6 +144,14 @@ get_node_is_master()      { debug "[$FUNCNAME] Executing"; jq -r '.is_master'   
 get_node_cluster()        { debug "[$FUNCNAME] Executing"; jq -r '.cluster_id'          $NODE_INFO_FILE; }
 get_node_type()           { debug "[$FUNCNAME] Executing"; jq -r '.type'                $NODE_INFO_FILE; }
 
+# Node Buffer and Metrics Info
+get_node_input_buffer_usage()      { debug "[$FUNCNAME] Executing"; ${METRICS_BASE_URL}"/org.graylog2.buffers.input.usage" | jq -r '.metrics[0].metric.value'; }
+get_node_input_buffer_size()       { debug "[$FUNCNAME] Executing"; ${METRICS_BASE_URL}"/org.graylog2.buffers.input.size" | jq -r '.metrics[0].metric.value'; }
+get_node_output_buffer_usage()     { debug "[$FUNCNAME] Executing"; ${METRICS_BASE_URL}"/org.graylog2.buffers.output.usage" | jq -r '.metrics[0].metric.value'; }
+get_node_output_buffer_size()      { debug "[$FUNCNAME] Executing"; ${METRICS_BASE_URL}"/org.graylog2.buffers.output.size" | jq -r '.metrics[0].metric.value'; }
+get_node_process_buffer_usage()    { debug "[$FUNCNAME] Executing"; ${METRICS_BASE_URL}"/org.graylog2.buffers.process.usage" | jq -r '.metrics[0].metric.value'; }
+get_node_process_buffer_size()     { debug "[$FUNCNAME] Executing"; ${METRICS_BASE_URL}"/org.graylog2.buffers.process.usage" | jq -r '.metrics[0].metric.value'; }
+get_node_journal_utilization_ratio()    { debug "[$FUNCNAME] Executing"; ${METRICS_BASE_URL}"/org.graylog2.journal.utilization-ratio" | jq -r '.metrics[0].metric.value'; }
 
 # Journal related information -- /system/journal
 JOURNAL_INFO_FILE=${WORKDIR}/${HOSTNAME}-journal.json
@@ -225,6 +233,10 @@ debug() {
     fi
 }
 
+# Setup Variables required for Node Buffer and Metrics Info that require debug() to be defined
+NODE_ID=$(get_node_id)
+METRICS_BASE_URL="${CURL_BASE_CMD}/cluster/$NODE_ID/metrics/namespace"
+
 case $ATTR in
     total_message_count)                       get_total_message_count                     ;;
     node_throughput)                           get_node_throughput                         ;;
@@ -237,6 +249,13 @@ case $ATTR in
     node_is_master)                    shlock; get_node_is_master                          ;;
     node_cluster)                      shlock; get_node_cluster                            ;;
     node_type)                         shlock; get_node_type                               ;;
+    node_input_buffer_usage)           shlock; get_node_input_buffer_usage                 ;;
+    node_input_buffer_size)            shlock; get_node_input_buffer_size                  ;;
+    node_output_buffer_usage)          shlock; get_node_output_buffer_usage                ;;
+    node_output_buffer_size)           shlock; get_node_output_buffer_size                 ;;
+    node_process_buffer_usage)         shlock; get_node_process_buffer_usage               ;;
+    node_process_buffer_size)          shlock; get_node_process_buffer_size                ;;
+    journal_utilization_ratio)         shlock; get_node_journal_utilization_ratio          ;;
     journal_events_read)               shlock; get_system_journal_events_read              ;;
     journal_events_append)             shlock; get_system_journal_events_append            ;;
     journal_size)                      shlock; get_system_journal_size                     ;;
