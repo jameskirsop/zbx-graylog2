@@ -150,7 +150,7 @@ get_node_input_buffer_size()       { debug "[$FUNCNAME] Executing"; ${METRICS_BA
 get_node_output_buffer_usage()     { debug "[$FUNCNAME] Executing"; ${METRICS_BASE_URL}"/org.graylog2.buffers.output.usage" | jq -r '.metrics[0].metric.value'; }
 get_node_output_buffer_size()      { debug "[$FUNCNAME] Executing"; ${METRICS_BASE_URL}"/org.graylog2.buffers.output.size" | jq -r '.metrics[0].metric.value'; }
 get_node_process_buffer_usage()    { debug "[$FUNCNAME] Executing"; ${METRICS_BASE_URL}"/org.graylog2.buffers.process.usage" | jq -r '.metrics[0].metric.value'; }
-get_node_process_buffer_size()     { debug "[$FUNCNAME] Executing"; ${METRICS_BASE_URL}"/org.graylog2.buffers.process.usage" | jq -r '.metrics[0].metric.value'; }
+get_node_process_buffer_size()     { debug "[$FUNCNAME] Executing"; ${METRICS_BASE_URL}"/org.graylog2.buffers.process.size" | jq -r '.metrics[0].metric.value'; }
 get_node_journal_utilization_ratio()    { debug "[$FUNCNAME] Executing"; ${METRICS_BASE_URL}"/org.graylog2.journal.utilization-ratio" | jq -r '.metrics[0].metric.value'; }
 
 # Journal related information -- /system/journal
